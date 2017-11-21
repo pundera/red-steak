@@ -1,0 +1,22 @@
+input {
+  padding: 5px;
+  margin: 4px;
+  width: 30px;
+}
+
+.header {
+  margin: 0 5px;
+}
+
+.hand {
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.btn {
+  border: 1px 1px 1px 1px;
+  border-width: 1px;
+  border-color: rgba(19, 114, 24, 0.53)
+}

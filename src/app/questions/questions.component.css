@@ -1,0 +1,43 @@
+/* Structure */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 95%;
+}
+
+.header {
+  min-height: 58px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 8px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.mat-cell {
+  padding: 0 4px;
+}
+
+.align-right {
+  align-content: top;
+  text-align: right;
+}
+
+.align-left {
+  align-content: top;
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}

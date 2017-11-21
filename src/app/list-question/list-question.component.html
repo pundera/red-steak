@@ -1,0 +1,31 @@
+<!-- vertical -->
+<div *ngIf="vertical">
+  <!-- <span>{{question.number}}.</span>
+  <span class="header">{{question.header}}</span> -->
+  <mat-button-toggle-group #group [vertical]="vertical">
+    <mat-button-toggle *ngFor="let v of question.typeValues" [value]="v">
+      {{v}}
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<!-- horizontal -->
+<div *ngIf="!vertical">
+  <table cellspacing="0">
+    <tr>
+      <!-- <td>
+        <span>{{question.number}}.</span>
+      </td>
+      <td>
+        <span class="header">{{question.header}}</span>
+      </td> -->
+      <td>
+        <mat-button-toggle-group #group [vertical]="vertical">
+          <mat-button-toggle *ngFor="let v of question.typeValues" [value]="v">
+            {{v}}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </td>
+    </tr>
+  </table>
+</div>

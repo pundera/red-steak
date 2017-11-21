@@ -1,0 +1,32 @@
+<table cellspacing="0">
+  <tr>
+    <!-- <td>
+      <span>{{question.number}}.</span>
+    </td>
+    <td>
+      <span class="header">{{question.header}}</span>
+    </td> -->
+    <td>
+      <table>
+        <tr>
+          <td>
+            <div class="btn">
+              <span class="hand">-</span>
+            </div>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput #value maxlength="2" placeholder="Číselná hodnota" [(ngModel)]="question.value">
+            </mat-form-field>
+          </td>
+          <td>
+            <div class="btn">
+              <span class="hand">+</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>

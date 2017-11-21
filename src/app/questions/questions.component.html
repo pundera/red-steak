@@ -1,0 +1,47 @@
+<div class="container mat-elevation-z8" *ngIf="initDone">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Number Column -->
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> Číslo </mat-header-cell>
+      <mat-cell class="align-left" *matCellDef="let element"> {{element.number}}. </mat-cell>
+    </ng-container>
+
+    <!-- Header Column -->
+    <ng-container matColumnDef="header">
+      <mat-header-cell *matHeaderCellDef> Otázka </mat-header-cell>
+      <mat-cell class="align-center"  *matCellDef="let element"> {{element.header}} </mat-cell>
+    </ng-container>
+
+    <!-- Component Column -->
+    <ng-container matColumnDef="component">
+      <mat-header-cell *matHeaderCellDef> Hodnota </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div [ngSwitch]="element.type">
+          <ng-container *ngSwitchCase="number">
+            <app-number-question [question]="element"></app-number-question>
+          </ng-container>
+          <ng-container *ngSwitchCase="text">
+            <app-string-question [question]="element"></app-string-question>
+          </ng-container>
+          <ng-container *ngSwitchCase="list">
+            <app-list-question [question]="element" [vertical]="element.vertical"></app-list-question>
+          </ng-container>
+          <ng-container *ngSwitchCase="yesno">
+            <app-yesno-question [question]="element"></app-yesno-question>
+          </ng-container>
+          <ng-container *ngSwitchCase="range">
+            <app-range-question [question]="element" [vertical]="element.vertical"></app-range-question>
+          </ng-container>
+          <ng-template *ngSwitchDefault>...undefined question type...</ng-template>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

@@ -12,6 +12,7 @@ export class Question {
 
   public value: any;
   public id: number;
+  public orderNumber: number;
 
   get defaultValue(): any {
     return this._defaultValue;

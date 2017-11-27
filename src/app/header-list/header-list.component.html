@@ -1,0 +1,42 @@
+<!-- REFRESH -->
+<div>
+  <i class="material-icons btn hand" (click)="refresh()">refresh</i>
+</div>
+
+<!-- TABLE -->
+<div class="container mat-elevation-z8" *ngIf="initDone">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Created Column -->
+    <ng-container matColumnDef="created">
+      <mat-header-cell *matHeaderCellDef> Vytvořeno </mat-header-cell>
+      <mat-cell class="align-left" *matCellDef="let element"> {{element.created | date:'fullDate'}} </mat-cell>
+    </ng-container>
+
+    <!-- Updated Column -->
+    <ng-container matColumnDef="updated">
+      <mat-header-cell *matHeaderCellDef> Upraveno </mat-header-cell>
+      <mat-cell class="align-left"  *matCellDef="let element"> {{element.updated | date:'fullDate'}} </mat-cell>
+    </ng-container>
+
+    <!-- Note Column -->
+    <ng-container matColumnDef="note">
+      <mat-header-cell *matHeaderCellDef> Poznámka </mat-header-cell>
+      <mat-cell class="align-right" *matCellDef="let element"> {{element.note}} </mat-cell>
+    </ng-container>
+
+    <!-- Detail Column -->
+    <ng-container matColumnDef="detail">
+      <mat-header-cell *matHeaderCellDef> Zobrazit detail </mat-header-cell>
+      <mat-cell class="align-right" *matCellDef="let element">
+        <i class="material-icons btn hand" (click)="detail(element)">launch</i>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

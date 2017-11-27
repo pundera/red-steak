@@ -4,33 +4,31 @@ import { QuestionType, Question } from './classes/question';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AnswersHeader } from './classes/answers-header';
 import { Api } from './singletons/api';
 
 @Injectable()
-export class QuestionsService {
+export class AnswersHeaderService {
 
   constructor(private _http: HttpClient) { }
 
-  // private _qqq = new Array<Question>();
-  // private questions: Observable<Question[]> = Observable.of(this._qqq);
+  // private _hhh = new Array<AnswersHeader>();
+  // private headers: Observable<AnswersHeader[]> = Observable.of(this._hhh);
 
-  getQuestions (): Observable<Question[]> {
-    return this._http.get<Question[]>(Api.root + Api.questions_get)
-    .pipe<Question[], Question[]>(
-      tap<Question[]>((fetchedQuestions) => {
-        console.log(fetchedQuestions);
-        // setter:
-        fetchedQuestions.forEach(
-          (x) => {
-                console.log(x);
-                if ( x.defaultValue || x.defaultValue === 0 ) {
-                x.value = x.defaultValue;
-                }
-              });
-            }),
-        catchError<Question[], Question[]>(this.handleError('GET Questions from DATA server!', [])
-        )
+  getAnswersHeaders (): Observable<AnswersHeader[]> {
+    return this._http.get<AnswersHeader[]>(Api.root + Api.answersHeader_get)
+    .pipe<AnswersHeader[], AnswersHeader[]>(
+      tap<AnswersHeader[]>((fetchedAnswersHeaders) => {
+        console.log(fetchedAnswersHeaders);
+      }),
+      catchError<AnswersHeader[], AnswersHeader[]>(this.handleError('GET AnswersHeaders from DATA server!', []))
     );
+  }
+
+  postAnswersHeaders (body: AnswersHeader): void {
+    this._http
+    .post<AnswersHeader>(Api.root + Api.answersHeader_post, body)
+    .subscribe((b) => { body = b; }, (err) => {}, () => {});
   }
 
   /**

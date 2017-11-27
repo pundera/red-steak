@@ -1,4 +1,3 @@
-import _default from '@angular/cli/tasks/build';
 export class Question {
   constructor (
     public number: number,

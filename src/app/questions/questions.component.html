@@ -1,4 +1,77 @@
-<div class="container mat-elevation-z8" *ngIf="initDone">
+<!-- HEADER -->
+<div class="header">
+<div class="left-top-corner hand">
+    <i class="material-icons">close</i>
+</div>
+  <table>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <mat-form-field>
+                <label for="pickerCreated">Vytvořeno</label>
+                <input matInput [matDatepicker]="pickerCreated" placeholder="Vytvořeno (datum)" [(ngModel)]="header.created">
+                <mat-datepicker-toggle matSuffix [for]="pickerCreated"></mat-datepicker-toggle>
+                <mat-datepicker #pickerCreated [startAt]="header?.created"></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <label for="pickerUpdated">Upraveno</label>
+                <input matInput [matDatepicker]="pickerUpdated" placeholder="Upraveno (datum)" [(ngModel)]="header.updated">
+                <mat-datepicker-toggle matSuffix [for]="pickerUpdated"></mat-datepicker-toggle>
+                <mat-datepicker #pickerUpdated [startAt]="header?.updated"></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-hint align="start">
+                  <strong>Neuvádějte osobní údaje dotazovaného!</strong>
+                </mat-hint>
+                <br />
+                <input matInput type="text" class="note" placeholder="Poznámka" [(ngModel)]="header.note">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <button mat-button class="button-erase">
+                <i class="material-icons">delete</i>
+                <span> Vymazat všechny hodnoty v celém dotazníku! </span>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button (click)="onSubmit()" class="mat-button" class="button-save">
+                <i class="material-icons">save</i>
+                <span> Uložit! </span>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+
+<!-- TABLE -->
+<div class="table-container mat-elevation-z8" *ngIf="initDone">
   <mat-table #table [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
@@ -13,13 +86,13 @@
     <!-- Header Column -->
     <ng-container matColumnDef="header">
       <mat-header-cell *matHeaderCellDef> Otázka </mat-header-cell>
-      <mat-cell class="align-center"  *matCellDef="let element"> {{element.header}} </mat-cell>
+      <mat-cell class="align-center" *matCellDef="let element"> {{element.header}} </mat-cell>
     </ng-container>
 
     <!-- Component Column -->
     <ng-container matColumnDef="component">
       <mat-header-cell *matHeaderCellDef> Hodnota </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell class="align-right" *matCellDef="let element">
         <div [ngSwitch]="element.type">
           <ng-container *ngSwitchCase="number">
             <app-number-question [question]="element"></app-number-question>
@@ -44,4 +117,8 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
 </div>
